@@ -16,7 +16,6 @@
          input.value = '';
          initialized = true;
          return;
-
       }
 
        switch(commandTokens[0]){
