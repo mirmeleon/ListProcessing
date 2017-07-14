@@ -1,6 +1,6 @@
 # ListProcessing
 Team project
-<h2>Trello boards:</h2><a href="https://trello.com/softuni5" target="_blank">here:</a>
+<h2>Trello boards:</h2><a href="https://trello.com/softuni5">https://trello.com/softuni5</a>
 <h3>Team members:</h3>
 <Ul>
 <li>Деница Радева - mirmeleon@abv.bg</li>
