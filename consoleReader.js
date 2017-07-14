@@ -32,6 +32,11 @@
                 break;
             case 'insert':
                 var index = Number(commandTokens[1]);
+                if(index < 0 || index > theArray.length - 1){
+                    writeLine('Error: invalid index ' + index);
+                    break;
+                }
+
                 var newString = commandTokens[2];
                 theArray.splice(index, 0, newString);
                 writeLine(theArray.join(" "));
