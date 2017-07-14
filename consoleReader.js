@@ -22,7 +22,8 @@
        switch(commandTokens[0]){
 
            default:
-               terminal.value += 'Error: invalid command';
+               terminal.value += 'Error: invalid command\n';
+               input.value = '';
        }
 
    }
