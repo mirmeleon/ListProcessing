@@ -14,6 +14,7 @@
        let commandTokens = input.value().split(' ').filter(e => e !=='');
        switch(commandTokens[0]){
            //todo
+               //test
 
        }
 
