@@ -24,10 +24,7 @@
 
            break;
 
-           case 'reverse':
-               theArray.reverse();
-               terminal.value += theArray.join(' ') + '\n';
-               break;
+
 
            default:
                terminal.value += 'Error: invalid command';
