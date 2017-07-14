@@ -18,11 +18,18 @@
          return;
       }
 
-       switch(commandTokens[0]){
+       switch (commandTokens[0]) {
+           case 'sort':
+               theArray = theArray.sort((a,b) => a-b);
+               writeLine(theArray.join(" "));
+               break;
 
            default:
-               terminal.value += 'Error: invalid command\n';
-               input.value = '';
+               writeLine('Error: invalid command');
+       }
+
+       function writeLine(message) {
+           terminal.value += "\n" + message;
        }
 
    }
