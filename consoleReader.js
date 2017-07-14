@@ -26,6 +26,8 @@
 
 
 
+
+
            default:
                terminal.value += 'Error: invalid command';
        }
