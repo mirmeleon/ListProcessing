@@ -7,11 +7,12 @@
    input.addEventListener('keypress', (e) => e.code ==='Enter' ? submit() : '');
 
    function submit(){
+       let commandTokens = input.value.split(' ').filter(e => e !=='');
       if(!initialized){
          theArray = commandTokens.slice(0);
          return;
       }
-       let commandTokens = input.value.split(' ').filter(e => e !=='');
+
        switch(commandTokens[0]){
            //todo
            default:
