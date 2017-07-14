@@ -20,10 +20,18 @@
 
        switch (commandTokens[0]) {
            case 'sort':
-               theArray = theArray.sort((a,b) => a-b);
+               theArray = theArray.sort();
                writeLine(theArray.join(" "));
                break;
-
+           case 'count':
+               let count = 0;
+               let matchNext = theArray.indexOf(commandTokens[1]);
+               while (matchNext !== -1){
+                   count++;
+                   matchNext = theArray.indexOf(commandTokens[1], matchNext +1);
+               }
+               writeLine(count);
+               break;
            default:
                writeLine('Error: invalid command');
        }
