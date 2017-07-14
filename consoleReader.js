@@ -11,11 +11,13 @@
          theArray = commandTokens.slice(0);
          return;
       }
-       let commandTokens = input.value().split(' ').filter(e => e !=='');
+       let commandTokens = input.value.split(' ').filter(e => e !=='');
        switch(commandTokens[0]){
-           //todo
-               //test
+           case 'append':
 
+           break;
+           default:
+               terminal.value +='Error: invalid command';
        }
 
    }
