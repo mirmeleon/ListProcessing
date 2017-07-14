@@ -7,15 +7,21 @@
    input.addEventListener('keypress', (e) => e.code ==='Enter' ? submit() : '');
 
    function submit(){
-      if(!initialized){
-         theArray = commandTokens.slice(0);
-         return;
-      }
        let commandTokens = input.value.split(' ').filter(e => e !=='');
+      console.log('Submited: ' + commandTokens);
+       if(!initialized){
+         theArray = commandTokens.slice(0);
+         input.value = '';
+         return;
+
+      }
+
        switch(commandTokens[0]){
            case 'append':
 
            break;
+
+
            default:
                terminal.value +='Error: invalid command';
        }
