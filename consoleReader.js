@@ -4,8 +4,9 @@
 
    let terminal = document.getElementById('terminal');
    let input = document.getElementById('console');
+   let end =false;
    document.getElementById('submit').addEventListener('click', submit);
-   input.addEventListener('keypress', (e) => e.code ==='Enter' ? submit() : '');
+   input.addEventListener('keypress', (e) => e.code ==='Enter' && end !== true ? submit() : '');
 
    function submit(){
        let commandTokens = input.value.split(' ').filter(e => e !=='');
@@ -17,8 +18,7 @@
          terminal.value += theArray.join(' ') + '\n';
          input.value = ' ';
          return;
-        }
-
+      }
        switch(commandTokens[0]){
 
            case 'append':
@@ -49,6 +49,27 @@
                 writeLine(theArray.join(" "));
                 clearInput();
                 break;
+           case 'sort':
+               theArray = theArray.sort();
+               writeLine(theArray.join(" "));
+               clearInput();
+               break;
+           case 'count':
+               let count = 0;
+               let idx = theArray.indexOf(commandTokens[1]);
+               while (idx !== -1){
+                   count++;
+                   idx = theArray.indexOf(commandTokens[1], idx + 1);
+               }
+               writeLine(count);
+               clearInput();
+               break;
+           case 'end':
+               document.getElementById('submit').removeEventListener('click', submit, false);
+               end = true;
+               writeLine("Finished");
+               clearInput();
+               break;
             default:
                writeLine('Error: invalid command');
                clearInput();
