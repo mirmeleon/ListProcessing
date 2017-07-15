@@ -15,19 +15,19 @@
          theArray = commandTokens.slice(0);
          input.value = '';
          initialized = true;
-         terminal.value += theArray.join(' ') + '\n';
-         input.value = ' ';
+         writeLine(theArray.join(' '));
+         clearInput();
          return;
       }
        switch(commandTokens[0]){
 
            case 'append':
                theArray.push(commandTokens[1]);
-               terminal.value += theArray.join(' ') + '\n';
+               writeLine(theArray.join(" "));
                clearInput();
            break;
            case 'prepend':
-                var newString = commandTokens[1];
+                let newString = commandTokens[1];
                 theArray.unshift(newString);
                 writeLine(theArray.join(" "));
                 clearInput();
@@ -38,13 +38,13 @@
                 clearInput();
                 break;
             case 'insert':
-                var index = Number(commandTokens[1]);
+                let index = Number(commandTokens[1]);
                 if(index < 0 || index > theArray.length - 1){
                     writeLine('Error: invalid index ' + index);
                     break;
                 }
 
-                var newString = commandTokens[2];
+                let newString = commandTokens[2];
                 theArray.splice(index, 0, newString);
                 writeLine(theArray.join(" "));
                 clearInput();
@@ -76,13 +76,12 @@
        }
 
        function writeLine(message){
-           terminal.value += "\n" + message;
+           terminal.value += message + "\n";
 
        }
 
        function clearInput(){
-
-           input.value = ' ';
+           input.value = '';
        }
 
    }
