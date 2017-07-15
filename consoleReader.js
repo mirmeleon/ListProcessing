@@ -1,7 +1,6 @@
 (function (){
    let theArray = [];
    let initialized = false;
-
    let terminal = document.getElementById('terminal');
    let input = document.getElementById('console');
    document.getElementById('submit').addEventListener('click', submit);
@@ -15,11 +14,17 @@
          theArray = commandTokens.slice(0);
          input.value = '';
          initialized = true;
+         terminal.value += theArray.join(' ') + '\n';
+         input.value = ' ';
          return;
-
       }
 
        switch(commandTokens[0]){
+           case 'append':
+               theArray.push(commandTokens[1]);
+               terminal.value += theArray.join(' ') + '\n';
+               input.value = ' ';
+           break;
 
             case 'prepend':
                 var newString = commandTokens[1];
