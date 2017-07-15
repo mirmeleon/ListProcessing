@@ -21,8 +21,32 @@
 
        switch(commandTokens[0]){
 
-           default:
-               terminal.value += 'Error: invalid command';
+            case 'prepend':
+                var newString = commandTokens[1];
+                theArray.unshift(newString);
+                writeLine(theArray.join(" "));
+                break;
+            case 'reverse':
+                theArray.reverse();
+                writeLine(theArray.join(" "));
+                break;
+            case 'insert':
+                var index = Number(commandTokens[1]);
+                if(index < 0 || index > theArray.length - 1){
+                    writeLine('Error: invalid index ' + index);
+                    break;
+                }
+
+                var newString = commandTokens[2];
+                theArray.splice(index, 0, newString);
+                writeLine(theArray.join(" "));
+                break;
+            default:
+               writeLine('Error: invalid command');
+       }
+
+       function writeLine(message){
+           terminal.value += "\n" + message;
        }
 
    }
