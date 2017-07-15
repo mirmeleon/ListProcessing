@@ -39,6 +39,10 @@
                 break;
             case 'insert':
                 var index = Number(commandTokens[1]);
+                if(commandTokens.length <= 2){
+                    writeLine('Error: invalid command parameters');
+                    break;
+                }
                 if(index < 0 || index > theArray.length - 1){
                     writeLine('Error: invalid index ' + index);
                     break;
