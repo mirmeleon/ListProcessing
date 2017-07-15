@@ -39,7 +39,7 @@
                 break;
             case 'insert':
                 var index = Number(commandTokens[1]);
-                if(commandTokens.length <= 2){
+                if(commandTokens.length <= 2 || isNaN(Number(commandTokens[1]))){
                     writeLine('Error: invalid command parameters');
                     break;
                 }
