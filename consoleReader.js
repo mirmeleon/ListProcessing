@@ -24,16 +24,18 @@
            case 'append':
                theArray.push(commandTokens[1]);
                terminal.value += theArray.join(' ') + '\n';
-               input.value = ' ';
+               clearInput();
            break;
            case 'prepend':
                 var newString = commandTokens[1];
                 theArray.unshift(newString);
                 writeLine(theArray.join(" "));
+                clearInput();
                 break;
             case 'reverse':
                 theArray.reverse();
                 writeLine(theArray.join(" "));
+                clearInput();
                 break;
             case 'insert':
                 var index = Number(commandTokens[1]);
@@ -45,14 +47,21 @@
                 var newString = commandTokens[2];
                 theArray.splice(index, 0, newString);
                 writeLine(theArray.join(" "));
+                clearInput();
                 break;
             default:
                writeLine('Error: invalid command');
+               clearInput();
        }
 
        function writeLine(message){
            terminal.value += "\n" + message;
 
+       }
+
+       function clearInput(){
+
+           input.value = ' ';
        }
 
    }
