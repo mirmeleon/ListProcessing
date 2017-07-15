@@ -1,6 +1,7 @@
 (function (){
    let theArray = [];
    let initialized = false;
+
    let terminal = document.getElementById('terminal');
    let input = document.getElementById('console');
    document.getElementById('submit').addEventListener('click', submit);
@@ -8,7 +9,6 @@
 
    function submit(){
        let commandTokens = input.value.split(' ').filter(e => e !=='');
-      console.log('Submited: ' + commandTokens);
 
        if(!initialized){
          theArray = commandTokens.slice(0);
@@ -17,16 +17,16 @@
          terminal.value += theArray.join(' ') + '\n';
          input.value = ' ';
          return;
-      }
+        }
 
        switch(commandTokens[0]){
+
            case 'append':
                theArray.push(commandTokens[1]);
                terminal.value += theArray.join(' ') + '\n';
                input.value = ' ';
            break;
-
-            case 'prepend':
+           case 'prepend':
                 var newString = commandTokens[1];
                 theArray.unshift(newString);
                 writeLine(theArray.join(" "));
@@ -52,6 +52,7 @@
 
        function writeLine(message){
            terminal.value += "\n" + message;
+
        }
 
    }
