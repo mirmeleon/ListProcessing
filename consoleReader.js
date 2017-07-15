@@ -27,7 +27,7 @@
                clearInput();
            break;
            case 'prepend':
-                let newString = commandTokens[1];
+                var newString = commandTokens[1];
                 theArray.unshift(newString);
                 writeLine(theArray.join(" "));
                 clearInput();
@@ -38,21 +38,24 @@
                 clearInput();
                 break;
             case 'insert':
-                let index = Number(commandTokens[1]);
+                var index = Number(commandTokens[1]);
                 if(index < 0 || index > theArray.length - 1){
                     writeLine('Error: invalid index ' + index);
                     break;
                 }
-
-                let newString = commandTokens[2];
+                var newString = commandTokens[2];
                 theArray.splice(index, 0, newString);
                 writeLine(theArray.join(" "));
                 clearInput();
                 break;
            case 'sort':
-               theArray = theArray.sort();
-               writeLine(theArray.join(" "));
-               clearInput();
+               if(commandTokens.length > 1){
+                   writeLine('Error: invalid command parameters');
+               }else {
+                   theArray = theArray.sort();
+                   writeLine(theArray.join(" "));
+                   clearInput();
+               }
                break;
            case 'count':
                let count = 0;
@@ -65,10 +68,14 @@
                clearInput();
                break;
            case 'end':
-               document.getElementById('submit').removeEventListener('click', submit, false);
-               end = true;
-               writeLine("Finished");
-               clearInput();
+               if(commandTokens.length > 1){
+                   writeLine('Error: invalid command parameters');
+               }else {
+                   document.getElementById('submit').removeEventListener('click', submit, false);
+                   end = true;
+                   writeLine("Finished");
+                   clearInput();
+               }
                break;
             default:
                writeLine('Error: invalid command');
