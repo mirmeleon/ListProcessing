@@ -10,19 +10,49 @@
 
    function submit(){
        let commandTokens = input.value.split(' ').filter(e => e !=='');
-      console.log('Submited: ' + commandTokens);
 
        if(!initialized){
          theArray = commandTokens.slice(0);
          input.value = '';
          initialized = true;
+         terminal.value += theArray.join(' ') + '\n';
+         input.value = ' ';
          return;
       }
+       switch(commandTokens[0]){
 
-       switch (commandTokens[0]) {
+           case 'append':
+               theArray.push(commandTokens[1]);
+               terminal.value += theArray.join(' ') + '\n';
+               clearInput();
+           break;
+           case 'prepend':
+                var newString = commandTokens[1];
+                theArray.unshift(newString);
+                writeLine(theArray.join(" "));
+                clearInput();
+                break;
+            case 'reverse':
+                theArray.reverse();
+                writeLine(theArray.join(" "));
+                clearInput();
+                break;
+            case 'insert':
+                var index = Number(commandTokens[1]);
+                if(index < 0 || index > theArray.length - 1){
+                    writeLine('Error: invalid index ' + index);
+                    break;
+                }
+
+                var newString = commandTokens[2];
+                theArray.splice(index, 0, newString);
+                writeLine(theArray.join(" "));
+                clearInput();
+                break;
            case 'sort':
                theArray = theArray.sort();
                writeLine(theArray.join(" "));
+               clearInput();
                break;
            case 'count':
                let count = 0;
@@ -32,18 +62,27 @@
                    idx = theArray.indexOf(commandTokens[1], idx + 1);
                }
                writeLine(count);
+               clearInput();
                break;
            case 'end':
                document.getElementById('submit').removeEventListener('click', submit, false);
                end = true;
                writeLine("Finished");
+               clearInput();
                break;
-           default:
+            default:
                writeLine('Error: invalid command');
+               clearInput();
        }
 
-       function writeLine(message) {
+       function writeLine(message){
            terminal.value += "\n" + message;
+
+       }
+
+       function clearInput(){
+
+           input.value = ' ';
        }
 
    }
