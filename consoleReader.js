@@ -9,19 +9,24 @@
 
    function submit(){
        let commandTokens = input.value.split(' ').filter(e => e !=='');
-      console.log('Submited: ' + commandTokens);
 
        if(!initialized){
          theArray = commandTokens.slice(0);
          input.value = '';
          initialized = true;
+         terminal.value += theArray.join(' ') + '\n';
+         input.value = ' ';
          return;
-
-      }
+        }
 
        switch(commandTokens[0]){
 
-            case 'prepend':
+           case 'append':
+               theArray.push(commandTokens[1]);
+               terminal.value += theArray.join(' ') + '\n';
+               input.value = ' ';
+           break;
+           case 'prepend':
                 var newString = commandTokens[1];
                 theArray.unshift(newString);
                 writeLine(theArray.join(" "));
@@ -47,6 +52,7 @@
 
        function writeLine(message){
            terminal.value += "\n" + message;
+
        }
 
    }
