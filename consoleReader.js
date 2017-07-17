@@ -52,6 +52,20 @@
                 writeLine(theArray.join(" "));
                 clearInput();
                 break;
+           case 'delete':
+               var index = Number(commandTokens[1]);
+               if(index < 0 || index > theArray.length - 1){
+                   writeLine('Error: invalid index ' + index);
+                   break;
+               }
+               if(isNaN(Number(commandTokens[1]))){
+                   writeLine('Error: invalid command parameters');
+                   break;
+               }
+               theArray.splice(index, 1)
+               writeLine(theArray.join(' '));
+               clearInput();
+               break;
            case 'sort':
                if(commandTokens.length > 1){
                    writeLine('Error: invalid command parameters');
