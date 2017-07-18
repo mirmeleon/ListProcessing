@@ -1,7 +1,6 @@
 (function () {
     let theArray = [];
     let initialized = false;
-
     let terminal = document.getElementById('terminal');
     let input = document.getElementById('console');
     let end = false;
@@ -12,6 +11,7 @@
     document.getElementById('submit').addEventListener('click', submit);
     input.addEventListener('keypress', (e) => e.code === 'Enter' && end !== true ? submit() : '');
     input.addEventListener('keydown', (e) => e.code === 'ArrowUp' && end !== true ? lastUsedCommand() : '');
+
     function submit() {
         let commandTokens = input.value.split(' ').filter(e => e !== '');
         //Move pre-command to the end of the commandArray
@@ -125,6 +125,11 @@
                    clearInput();
                }
                break;
+            case 'cls':
+                terminal.value = '';
+                writeLine('Console was cleared!');
+                clearInput();
+                break;
             default:
                 writeLine('Error: invalid command');
                 clearInput();
