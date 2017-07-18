@@ -66,6 +66,22 @@
                writeLine(theArray.join(' '));
                clearInput();
                break;
+           case 'roll':
+               if(commandTokens[1] == 'left') {
+                   var rolledStr = theArray.shift()
+                   theArray.push(rolledStr)
+               }
+               else if(commandTokens[1] == 'right') {
+                   var lastStr = theArray.pop()
+                   theArray.unshift(lastStr)
+               }
+                else{
+                   writeLine('Error: invalid command parameters');
+                   break;
+               }
+               writeLine(theArray.join(' '))
+               clearInput()
+               break;
            case 'sort':
                if(commandTokens.length > 1){
                    writeLine('Error: invalid command parameters');
