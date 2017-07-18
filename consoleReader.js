@@ -95,6 +95,65 @@
                     clearInput();
                 }
                 break;
+           case 'delete':
+               var index = Number(commandTokens[1]);
+               if(index < 0 || index > theArray.length - 1){
+                   writeLine('Error: invalid index ' + index);
+                   break;
+               }
+               if(isNaN(Number(commandTokens[1]))){
+                   writeLine('Error: invalid command parameters');
+                   break;
+               }
+               theArray.splice(index, 1)
+               writeLine(theArray.join(' '));
+               clearInput();
+               break;
+           case 'roll':
+               if(commandTokens[1] == 'left') {
+                   var rolledStr = theArray.shift()
+                   theArray.push(rolledStr)
+               }
+               else if(commandTokens[1] == 'right') {
+                   var lastStr = theArray.pop()
+                   theArray.unshift(lastStr)
+               }
+                else{
+                   writeLine('Error: invalid command parameters');
+                   break;
+               }
+               writeLine(theArray.join(' '))
+               clearInput()
+               break;
+           case 'sort':
+               if(commandTokens.length > 1){
+                   writeLine('Error: invalid command parameters');
+               }else {
+                   theArray = theArray.sort();
+                   writeLine(theArray.join(" "));
+                   clearInput();
+               }
+               break;
+           case 'count':
+               let count = 0;
+               let idx = theArray.indexOf(commandTokens[1]);
+               while (idx !== -1){
+                   count++;
+                   idx = theArray.indexOf(commandTokens[1], idx + 1);
+               }
+               writeLine(count);
+               clearInput();
+               break;
+           case 'end':
+               if(commandTokens.length > 1){
+                   writeLine('Error: invalid command parameters');
+               }else {
+                   document.getElementById('submit').removeEventListener('click', submit, false);
+                   end = true;
+                   writeLine("Finished");
+                   clearInput();
+               }
+               break;
             default:
                 writeLine('Error: invalid command');
                 clearInput();
